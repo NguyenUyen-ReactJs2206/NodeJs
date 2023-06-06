@@ -1,10 +1,15 @@
-type Handle = () => Promise<string>
-const fullname = 'Uyen Nguyen'
+import express from 'express'
+import { sum } from './utils'
 
-const handle: Handle = () => Promise.resolve(fullname)
-// console.log(fullname)
-// handle().then(console.log)
+const app = express()
+const port = 3000
 
-handle().then((res) => {
-  console.log(res)
+app.get('/', (req, res) => {
+  const data: any = { a: 1, b: 2 }
+  const value = sum(data)
+  res.send(`Hello World!, ${value}`)
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
 })
